@@ -98,6 +98,9 @@ class Post(dict):
         for p in sbd_amounts:
             post[p] = Amount(post.get(p, "0.000 %s" % self.steem.symbol("SBD")))
 
+        # sum of payouts to get trending posts
+        post['sum_payout_data'] = post['total_payout_value'] + post['curator_payout_value'] + post['pending_payout_value']
+
         # Try to properly format json meta data
 
         try:
